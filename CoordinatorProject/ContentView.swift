@@ -9,7 +9,7 @@
 import SwiftUI
 import Combine
 
-enum ContentViewStep: Step {
+enum ContentViewStep {
     case nextIsPicked
 }
 

@@ -9,11 +9,9 @@
 import Combine
 
 protocol Screen: AnyObject {
-    associatedtype ScreenStep: Step
-    associatedtype ParentStep: Step
+    associatedtype ScreenStep
+    associatedtype ParentStep
 
-    var identifier: String { get }
-    
     var presentable: Presentable { get }
     
     var stepper: AnyStepper<ScreenStep> { get }

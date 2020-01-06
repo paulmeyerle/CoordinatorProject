@@ -9,12 +9,12 @@
 import Combine
 import UIKit
 
-enum AppFlowStates: Step {
+enum AppFlowStep {
     case home
     case homeCompleted
 }
 
-enum AppFlowResult: FlowResult {
+enum AppFlowResult {
     case completed
 }
 
@@ -22,8 +22,6 @@ final class AppFlow: Flow {
     private let window: UIWindow
     
     var disposeBag = Set<AnyCancellable>()
-    
-    let identifier: String = UUID().uuidString
     
     var presentable: Presentable {
         navigationController
@@ -33,7 +31,7 @@ final class AppFlow: Flow {
     
     let onCompletion: AnyPublisher<AppFlowResult, Never> = Empty().eraseToAnyPublisher()
     
-    var children = [String: Any]()
+    var children = [AnyHashable: Any]()
     
     init(window: UIWindow) {
         self.window = window
@@ -43,11 +41,13 @@ final class AppFlow: Flow {
         handle(step: .home)
     }
     
-    func handle(step: AppFlowStates) {
+    func handle(step: AppFlowStep) {
         switch step {
         case .home:
             let child = HomeFlow()
             add(flow: child) { [weak self] result in
+                // TODO: it would be nice to be able to move this code into a more testable bit.  Kind of like the `Screen` Concept....
+                // maybe the screen concept could be make more generic, or we could have another protocol for what this encapsulation is.
                 guard case .completed = result else { return }
                 self?.handle(step: .homeCompleted)
             }

@@ -9,10 +9,8 @@
 import Combine
 
 protocol Flow: AnyObject {
-    associatedtype FlowStep: Step
-    associatedtype Result: FlowResult
-    
-     var identifier: String { get }
+    associatedtype Step
+    associatedtype Result
     
     /// The thing that this flow is actually presented in
     var presentable: Presentable { get }
@@ -22,10 +20,10 @@ protocol Flow: AnyObject {
         
     /// Router, thing that is able to route to different screens based on the step provided
     /// - Parameter step: step that we encountered
-    func handle(step: FlowStep)
+    func handle(step: Step)
     
     /// Storage for the children
-    var children: [String: Any] { get set }
+    var children: [AnyHashable: Any] { get set }
     
     /// cancel bag
     var disposeBag: Set<AnyCancellable> { get set }
@@ -33,7 +31,7 @@ protocol Flow: AnyObject {
 
 extension Flow {
     func add<T: Flow>(flow: T, handler: ((T.Result) -> Void)? = nil)  {
-        let childId = flow.identifier
+        let childId = ObjectIdentifier(flow)
         children[childId] = flow
         
         flow.onCompletion
@@ -52,8 +50,8 @@ extension Flow {
             .store(in: &disposeBag)
     }
     
-    func add<T: Screen>(screen: T) where T.ParentStep == Self.FlowStep {
-        let childId = screen.identifier
+    func add<T: Screen>(screen: T) where T.ParentStep == Self.Step {
+        let childId = ObjectIdentifier(screen)
         children[childId] = screen
         
         screen.flowStep

@@ -9,14 +9,14 @@
 import UIKit
 import Combine
 
-enum HomeFlowStep: Step {
+enum HomeFlowStep {
     case screen1
     case screen2
     case screen3
     case completed
 }
 
-enum HomeFlowResult: FlowResult {
+enum HomeFlowResult {
     case completed
 }
 
@@ -29,8 +29,6 @@ final class HomeFlow: Flow {
     
     var disposeBag = Set<AnyCancellable>()
 
-    let identifier: String = UUID().uuidString
-    
     var presentable: Presentable {
         navigationController
     }
@@ -51,7 +49,7 @@ final class HomeFlow: Flow {
         print("HomeFlow - deinit")
     }
     
-    var children = [String: Any]()
+    var children = [AnyHashable: Any]()
 
     func handle(step: HomeFlowStep) {
         switch step {
@@ -74,8 +72,6 @@ final class HomeFlow: Flow {
     }
     
     final class Screen1: Screen {
-        let identifier: String = UUID().uuidString
-        
         lazy var stepper: AnyStepper<ContentViewStep> = {
             viewModel.eraseToAnyStepper()
         }()
@@ -106,8 +102,6 @@ final class HomeFlow: Flow {
     }
     
     final class Screen2: Screen {
-        let identifier: String = UUID().uuidString
-        
         lazy var stepper: AnyStepper<ContentViewStep> = {
             viewModel.eraseToAnyStepper()
         }()
@@ -138,8 +132,6 @@ final class HomeFlow: Flow {
     }
     
     final class Screen3: Screen {
-        let identifier: String = UUID().uuidString
-        
         lazy var stepper: AnyStepper<ContentViewStep> = {
             viewModel.eraseToAnyStepper()
         }()

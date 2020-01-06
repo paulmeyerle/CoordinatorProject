@@ -9,7 +9,7 @@
 import Combine
 
 protocol Stepper {
-    associatedtype StepperStep: Step
+    associatedtype StepperStep
     var stepper: PassthroughSubject<StepperStep, Never> { get }
 }
 
@@ -19,7 +19,7 @@ extension Stepper {
     }
 }
 
-final class AnyStepper<T: Step>: Stepper {
+final class AnyStepper<T>: Stepper {
     private let _stepper: PassthroughSubject<T, Never>
     
     var stepper: PassthroughSubject<T, Never> {
