@@ -77,7 +77,7 @@ final class HomeCoordinator: Coordinator {
             .eraseToAnyPublisher()
         }()
         
-        func handle(step: MyScreenViewEvent) {}
+        func handle(step: ContentViewStep) {}
         
         let identifier: String = UUID().uuidString
         
@@ -85,12 +85,13 @@ final class HomeCoordinator: Coordinator {
         
         var disposeBag = Set<AnyCancellable>()
             
-        private let viewModel: MyScreenViewModel = {
-            MyScreenViewModel(screenNumber: 1)
+        private let viewModel: ContentViewModel = {
+            ContentViewModel(screenNumber: 1)
         }()
         
         lazy var presentable: Presentable = {
-            MyScreenViewController(viewModel: viewModel)
+            let view = ContentView(viewModel: viewModel)
+            return PresentableHostingController(rootView: view)
         }()
         
         init() {
@@ -114,7 +115,7 @@ final class HomeCoordinator: Coordinator {
             .eraseToAnyPublisher()
         }()
         
-        func handle(step: MyScreenViewEvent) {}
+        func handle(step: ContentViewStep) {}
         
         let identifier: String = UUID().uuidString
         
@@ -122,12 +123,13 @@ final class HomeCoordinator: Coordinator {
         
         var disposeBag = Set<AnyCancellable>()
             
-        private let viewModel: MyScreenViewModel = {
-            MyScreenViewModel(screenNumber: 2)
+        private let viewModel: ContentViewModel = {
+            ContentViewModel(screenNumber: 2)
         }()
         
         lazy var presentable: Presentable = {
-            MyScreenViewController(viewModel: viewModel)
+            let view = ContentView(viewModel: viewModel)
+            return PresentableHostingController(rootView: view)
         }()
         
         init() {
@@ -151,9 +153,7 @@ final class HomeCoordinator: Coordinator {
             .eraseToAnyPublisher()
         }()
         
-        func handle(step: MyScreenViewEvent) {
-            // NOOP
-        }
+        func handle(step: ContentViewStep) {}
         
         let identifier: String = UUID().uuidString
         
@@ -161,12 +161,13 @@ final class HomeCoordinator: Coordinator {
         
         var disposeBag = Set<AnyCancellable>()
             
-        private let viewModel: MyScreenViewModel = {
-            MyScreenViewModel(screenNumber: 3)
+        private let viewModel: ContentViewModel = {
+            ContentViewModel(screenNumber: 3)
         }()
         
         lazy var presentable: Presentable = {
-            MyScreenViewController(viewModel: viewModel)
+            let view = ContentView(viewModel: viewModel)
+            return PresentableHostingController(rootView: view)
         }()
         
         init() {
