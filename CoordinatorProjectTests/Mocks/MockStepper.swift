@@ -9,6 +9,6 @@
 import Combine
 @testable import CoordinatorProject
 
-final class MockStepper<T>: Stepper {
+final class MockStepper<T>: EventEmitter {
     let stepper = PassthroughSubject<T, Never>()
 }

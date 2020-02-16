@@ -1,5 +1,5 @@
 //
-//  PresentableNavigationController.swift
+//  PresentableHostingController.swift
 //  CoordinatorProject
 //
 //  Created by Paul Meyerle on 1/4/20.
@@ -8,8 +8,9 @@
 
 import Combine
 import UIKit
+import SwiftUI
 
-final class PresentableNavigationController: UINavigationController, Presentable {
+final class PresentableHostingController<T: View>: UIHostingController<T>, Presentable {
     private let isVisibleSubject = PassthroughSubject<Void, Never>()
     var isVisible: AnyPublisher<Void, Never> {
         isVisibleSubject.eraseToAnyPublisher()
@@ -20,8 +21,8 @@ final class PresentableNavigationController: UINavigationController, Presentable
         isDismissedSubject.eraseToAnyPublisher()
     }
     
-    var viewController: UIViewController {
-        return self
+    deinit {
+        print("PresentableHostingController - deinit")
     }
     
     override func viewDidAppear(_ animated: Bool) {

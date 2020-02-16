@@ -9,24 +9,6 @@
 import SwiftUI
 import Combine
 
-enum ContentViewStep {
-    case nextIsPicked
-}
-
-final class ContentViewModel: ObservableObject, Stepper {
-    let stepper = PassthroughSubject<ContentViewStep, Never>()
-    
-    @Published var titleText: String = ""
-    
-    init(screenNumber: Int) {
-        titleText = "Screen \(screenNumber)"
-    }
-    
-    func onNextButtonTap() {
-        stepper.send(.nextIsPicked)
-    }
-}
-
 struct ContentView: View {
     
     @ObservedObject private var viewModel: ContentViewModel
@@ -37,12 +19,14 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text(viewModel.titleText)
+            Text(viewModel.subtitleText)
+                .font(.body)
         
             Button(action: { self.viewModel.onNextButtonTap() }) {
                 Text("Next")
             }
         }
+        .navigationBarTitle(viewModel.titleText)
     }
 }
 

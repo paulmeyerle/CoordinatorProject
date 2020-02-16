@@ -9,8 +9,8 @@
 import UIKit.UIViewController
 import Combine
 
-protocol Presentable {
+/// Something that can become visible and then be dismissed
+public protocol Presentable {
     var isVisible: AnyPublisher<Void, Never> { get }
     var isDismissed: AnyPublisher<Void, Never> { get }
-    var viewController: UIViewController { get }
 }
