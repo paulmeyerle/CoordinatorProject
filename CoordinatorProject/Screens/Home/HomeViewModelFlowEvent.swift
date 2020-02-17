@@ -9,4 +9,6 @@
 enum HomeViewModelFlowEvent {
     case presentIsPicked
     case pushIsPicked
+    
+    case optionIsRequired(handler: (_ id: Int, _ name: String) -> Void)
 }

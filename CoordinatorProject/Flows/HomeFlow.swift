@@ -14,6 +14,8 @@ enum HomeFlowEvent {
     case presentFlow
     case presentFlowIsComplete
     case pushFlow
+    case optionList(handler: (_ id: Int, _ name: String) -> Void)
+    case optionListIsComplete
 }
 
 final class HomeFlow: Flow {
@@ -56,6 +58,12 @@ final class HomeFlow: Flow {
             navigationController.present(step.rootViewController, animated: true)
         case .presentFlowIsComplete:
             navigationController.dismiss(animated: true)
+        case let .optionList(handler):
+            let step = OptionListStep(handler: handler)
+            add(step: step)
+            navigationController.present(step.rootViewController, animated: true)
+        case .optionListIsComplete:
+            navigationController.dismiss(animated: true)
         }
     }
     
@@ -90,7 +98,7 @@ final class HomeFlow: Flow {
         var cancellables = Set<AnyCancellable>()
         
         var eventPublisher: AnyPublisher<HomeViewModelFlowEvent, Never> {
-            viewModel.stepper
+            viewModel.eventPublisher
         }
         
         private let viewModel: HomeViewModel = {
@@ -120,6 +128,41 @@ final class HomeFlow: Flow {
                 return .presentFlow
             case .pushIsPicked:
                 return .pushFlow
+            case let .optionIsRequired(handler):
+                return .optionList(handler: handler)
+            }
+        }
+    }
+    
+    final class OptionListStep: Step {
+        private let viewModel = TypeaheadViewModel()
+        
+        lazy var rootViewController: UIViewController & Presentable = {
+            let view = TypeaheadView(viewModel: viewModel)
+            return PresentableHostingController(rootView: view)
+        }()
+        
+        var presentable: Presentable {
+            rootViewController
+        }
+        
+        var eventPublisher: AnyPublisher<TypeaheadViewModelFlowEvent, Never> {
+            viewModel.eventPublisher
+        }
+        
+        var cancellables = Set<AnyCancellable>()
+        
+        private let handler: (_ id: Int, _ name: String) -> Void
+        
+        init(handler: @escaping (_ id: Int, _ name: String) -> Void) {
+            self.handler = handler
+        }
+        
+        func mapToParent(event: TypeaheadViewModelFlowEvent) -> HomeFlowEvent? {
+            switch event {
+            case .optionPicked(let id, let name):
+                handler(id, name)
+                return .optionListIsComplete
             }
         }
     }

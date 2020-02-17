@@ -18,18 +18,29 @@ struct HomeView: View {
     }
     
     var body: some View {
-        HStack {
-            Button(action: { self.viewModel.onPushButtonTap() }) {
-                Text("Push Content Flow")
-            }
+        VStack {
+            Text("Select an option")
+                .font(.headline)
+                .onTapGesture {
+                    self.viewModel.onOptionButtonTap()
+                }
             
-            Divider()
+            Text(viewModel.optionTitleText)
+                .font(.subheadline)
             
-            Button(action: { self.viewModel.onPresentButtonTap() }) {
-                Text("Present Content Flow")
+            HStack {
+                Button(action: { self.viewModel.onPushButtonTap() }) {
+                    Text("Push Content Flow")
+                }
+                
+                Divider()
+                
+                Button(action: { self.viewModel.onPresentButtonTap() }) {
+                    Text("Present Content Flow")
+                }
             }
+            .frame(height: 50)
         }
-        .frame(height: 50)
         .navigationBarTitle("Home")
     }
 }

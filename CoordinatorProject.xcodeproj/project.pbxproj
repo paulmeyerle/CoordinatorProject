@@ -19,6 +19,9 @@
 		12A71A7223F9755E00F0614A /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7123F9755E00F0614A /* ContentViewModel.swift */; };
 		12A71A7423F9759800F0614A /* HomeViewModelFlowEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7323F9759800F0614A /* HomeViewModelFlowEvent.swift */; };
 		12A71A7623F975A700F0614A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7523F975A700F0614A /* HomeViewModel.swift */; };
+		12A71A7823F99C8000F0614A /* TypeaheadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7723F99C8000F0614A /* TypeaheadView.swift */; };
+		12A71A7B23F99C9900F0614A /* TypeaheadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7A23F99C9900F0614A /* TypeaheadViewModel.swift */; };
+		12A71A7D23F99CA300F0614A /* TypeaheadViewModelFlowEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A71A7C23F99CA300F0614A /* TypeaheadViewModelFlowEvent.swift */; };
 		12E5713423F8258200394923 /* ContentFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E5713323F8258200394923 /* ContentFlow.swift */; };
 		12E5713623F82D4800394923 /* StepStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E5713523F82D4800394923 /* StepStore.swift */; };
 		54082CDF23C0DE160043CE3E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54082CDE23C0DE160043CE3E /* AppDelegate.swift */; };
@@ -68,6 +71,9 @@
 		12A71A7123F9755E00F0614A /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		12A71A7323F9759800F0614A /* HomeViewModelFlowEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelFlowEvent.swift; sourceTree = "<group>"; };
 		12A71A7523F975A700F0614A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		12A71A7723F99C8000F0614A /* TypeaheadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadView.swift; sourceTree = "<group>"; };
+		12A71A7A23F99C9900F0614A /* TypeaheadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadViewModel.swift; sourceTree = "<group>"; };
+		12A71A7C23F99CA300F0614A /* TypeaheadViewModelFlowEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeaheadViewModelFlowEvent.swift; sourceTree = "<group>"; };
 		12E5713323F8258200394923 /* ContentFlow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFlow.swift; sourceTree = "<group>"; };
 		12E5713523F82D4800394923 /* StepStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepStore.swift; sourceTree = "<group>"; };
 		54082CDB23C0DE160043CE3E /* CoordinatorProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoordinatorProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +149,7 @@
 		126703E723F85D1C009E0F5D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				12A71A7923F99C8500F0614A /* Typeahead */,
 				12A71A6C23F9746D00F0614A /* Content */,
 				126703E823F85D44009E0F5D /* Home */,
 			);
@@ -167,6 +174,16 @@
 				12A71A6D23F9754400F0614A /* ContentViewModelFlowEvent.swift */,
 			);
 			path = Content;
+			sourceTree = "<group>";
+		};
+		12A71A7923F99C8500F0614A /* Typeahead */ = {
+			isa = PBXGroup;
+			children = (
+				12A71A7723F99C8000F0614A /* TypeaheadView.swift */,
+				12A71A7A23F99C9900F0614A /* TypeaheadViewModel.swift */,
+				12A71A7C23F99CA300F0614A /* TypeaheadViewModelFlowEvent.swift */,
+			);
+			path = Typeahead;
 			sourceTree = "<group>";
 		};
 		54082CD223C0DE160043CE3E = {
@@ -382,7 +399,9 @@
 				12A71A7623F975A700F0614A /* HomeViewModel.swift in Sources */,
 				54082D2423C0E27D0043CE3E /* AppFlow.swift in Sources */,
 				54082D2023C0E0A70043CE3E /* PresentableHostingController.swift in Sources */,
+				12A71A7B23F99C9900F0614A /* TypeaheadViewModel.swift in Sources */,
 				54082D1A23C0DF140043CE3E /* Presentable.swift in Sources */,
+				12A71A7D23F99CA300F0614A /* TypeaheadViewModelFlowEvent.swift in Sources */,
 				126703EA23F85D52009E0F5D /* HomeView.swift in Sources */,
 				54082D1623C0DE9A0043CE3E /* EventEmitter.swift in Sources */,
 				54082CDF23C0DE160043CE3E /* AppDelegate.swift in Sources */,
@@ -392,6 +411,7 @@
 				12A71A6E23F9754400F0614A /* ContentViewModelFlowEvent.swift in Sources */,
 				54082D1E23C0E08D0043CE3E /* PresentableNavigationController.swift in Sources */,
 				54082D1C23C0DFC60043CE3E /* Flow.swift in Sources */,
+				12A71A7823F99C8000F0614A /* TypeaheadView.swift in Sources */,
 				54082CE323C0DE160043CE3E /* ContentView.swift in Sources */,
 				12E5713423F8258200394923 /* ContentFlow.swift in Sources */,
 				54082D2223C0E0EF0043CE3E /* Step.swift in Sources */,

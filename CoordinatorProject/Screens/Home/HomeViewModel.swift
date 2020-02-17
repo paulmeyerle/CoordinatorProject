@@ -10,9 +10,11 @@ import Combine
 
 final class HomeViewModel: ObservableObject, EventEmitter {
     private let eventSubject = PassthroughSubject<HomeViewModelFlowEvent, Never>()
-    var stepper: AnyPublisher<HomeViewModelFlowEvent, Never> {
+    var eventPublisher: AnyPublisher<HomeViewModelFlowEvent, Never> {
         eventSubject.eraseToAnyPublisher()
     }
+    
+    @Published private(set) var optionTitleText: String = ""
     
     func onPresentButtonTap() {
         eventSubject.send(.presentIsPicked)
@@ -20,5 +22,13 @@ final class HomeViewModel: ObservableObject, EventEmitter {
     
     func onPushButtonTap() {
         eventSubject.send(.pushIsPicked)
+    }
+    
+    func onOptionButtonTap() {
+        let event: HomeViewModelFlowEvent = .optionIsRequired { [weak self] (id, name) in
+            self?.optionTitleText = "id: \(id), name: \(name)"
+        }
+        
+        eventSubject.send(event)
     }
 }

@@ -70,7 +70,7 @@ final class ContentFlow: Flow {
         var cancellables = Set<AnyCancellable>()
         
         lazy var eventPublisher: AnyPublisher<ContentViewModelFlowEvent, Never> = {
-            viewModel.stepper.eraseToAnyPublisher()
+            viewModel.eventPublisher
         }()
         
         private let viewModel: ContentViewModel = {
@@ -106,7 +106,7 @@ final class ContentFlow: Flow {
         var cancellables = Set<AnyCancellable>()
         
         lazy var eventPublisher: AnyPublisher<ContentViewModelFlowEvent, Never> = {
-            viewModel.stepper.eraseToAnyPublisher()
+            viewModel.eventPublisher
         }()
         
         private let viewModel: ContentViewModel = {
@@ -142,7 +142,7 @@ final class ContentFlow: Flow {
         var cancellables = Set<AnyCancellable>()
         
         lazy var eventPublisher: AnyPublisher<ContentViewModelFlowEvent, Never> = {
-            viewModel.stepper.eraseToAnyPublisher()
+            viewModel.eventPublisher
         }()
         
         private let viewModel: ContentViewModel = {

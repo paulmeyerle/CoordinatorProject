@@ -11,7 +11,7 @@ import Combine
 final class ContentViewModel: ObservableObject, EventEmitter {
     
     let eventSubject = PassthroughSubject<ContentViewModelFlowEvent, Never>()
-    var stepper: AnyPublisher<ContentViewModelFlowEvent, Never> {
+    var eventPublisher: AnyPublisher<ContentViewModelFlowEvent, Never> {
         eventSubject.eraseToAnyPublisher()
     }
     

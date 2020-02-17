@@ -10,5 +10,5 @@ import Combine
 
 protocol EventEmitter {
     associatedtype Event
-    var stepper: AnyPublisher<Event, Never> { get }
+    var eventPublisher: AnyPublisher<Event, Never> { get }
 }
